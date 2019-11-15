@@ -1,0 +1,36 @@
+<ion-card>
+  <img [src]="roomData.imageUrl" />
+  <ion-card-header>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-card-subtitle>{{roomData.title}}</ion-card-subtitle>
+        </ion-col>
+        <ion-col>
+          <ion-card-subtitle class="right">Capacity: {{roomData.capacity}}</ion-card-subtitle>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="!compactView">
+        <ion-col>
+          {{roomData.address}}
+        </ion-col>
+        <ion-col class="right">
+          {{roomData.likes}} 👍 
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-header>
+
+  <div *ngIf="!compactView">
+    <ion-card-content>
+      <ion-label>{{roomData.description}}</ion-label>
+    </ion-card-content>
+    <ion-card-content>
+      <ion-label *ngIf="roomData.available">✔︎ Available <br> from 
+        {{roomData.fromDate.seconds*1000 | date:'dd MMM yyyy'}}
+        to {{roomData.toDate.seconds*1000 | date: 'dd MMM yyyy'}}
+      </ion-label>
+    </ion-card-content>
+  </div>
+
+</ion-card>

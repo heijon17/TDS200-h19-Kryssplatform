@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>room-details</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button text="" color="medium" defaultHref="/"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content no-padding>
+  <app-room-card [roomData]="roomData" [compactView]="false"></app-room-card>
+</ion-content>
+
+<ion-footer class="details-footer">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button class="book-button" (click)="bookRoom()">🌎 Show map</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button class="book-button" (click)="bookRoom()">🗓 Book room!</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+</ion-footer>

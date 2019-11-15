@@ -13,6 +13,10 @@ const routes: Routes = [
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule),
     ...canActivate(redirectLoggedInTo(['home']))
   },
+  {
+    path: 'room-details',
+    loadChildren: () => import('./room-details/room-details.module').then( m => m.RoomDetailsPageModule)
+  },
 ];
 
 @NgModule({

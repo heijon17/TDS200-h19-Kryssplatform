@@ -3,6 +3,11 @@
     <ion-title>
       Appointment™
     </ion-title>
+    <ion-buttons slot="primary">
+      <ion-button [routerLink]="['/new-post']">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-buttons slot="secondary">
       <ion-button (click)="logout()">Log out</ion-button>
     </ion-buttons>
@@ -10,7 +15,11 @@
 </ion-header>
 
 <ion-content>
-  <div class="ion-padding">
-   
+  <div>
+    <ion-list>
+      <ion-item *ngFor="let room of rooms$ | async" lines="none" (click)="showDetails(room)">
+        <app-room-card [roomData]="room" [compactView]="true"></app-room-card>
+      </ion-item>
+    </ion-list>
   </div>
 </ion-content>

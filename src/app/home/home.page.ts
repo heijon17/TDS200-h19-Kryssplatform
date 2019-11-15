@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
+import { AngularFirestore } from '@angular/fire/firestore';
+import IRoom from '../models/IRoom';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -9,10 +12,27 @@ import { Router } from '@angular/router';
 })
 export class HomePage {
 
+  private rooms$: Observable<IRoom[]>;
+
   constructor(
     private fireauth: AngularFireAuth,
-    private router: Router
+    private router: Router,
+    private firestore: AngularFirestore
   ) {}
+
+  // tslint:disable-next-line:use-lifecycle-interface
+  ngOnInit() {
+    this.rooms$ = this.firestore.collection('rooms').valueChanges() as Observable<IRoom[]>;
+  }
+
+  showDetails(room: IRoom) {
+    const navExtras: NavigationExtras = {
+      state: {
+        roomData: room
+      }
+    };
+    this.router.navigate(['room-details'], navExtras);
+  }
 
 
   async logout() {
