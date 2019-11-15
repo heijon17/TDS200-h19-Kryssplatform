@@ -1,0 +1,12 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Please log in</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding fixed class="login-background">
+  <ion-input class="input-field input-username" placeholder="E-mail" [(ngModel)]="user.email"></ion-input>
+  <ion-input class="input-field input-password" placeholder="Password" [(ngModel)]="user.password" type="password"></ion-input>
+  <ion-button class="login-button" (click)="register()">Register</ion-button>
+  <ion-button class="login-button" (click)="login()">Log in</ion-button>
+</ion-content>
