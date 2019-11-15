@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Add room</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button text="" color="medium" defaultHref="/"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <img [src]="cameraPreview" class="add-image" />
+  </ion-card>
+</ion-content>
+
+<ion-footer class="add-footer">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button class="add-button" (click)="takePicture()">Take picture</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button class="add-button" (click)="bookRoom()">Publish room</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>
