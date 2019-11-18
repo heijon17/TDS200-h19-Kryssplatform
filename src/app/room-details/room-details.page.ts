@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import IRoom from '../models/IRoom';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ModalController } from '@ionic/angular';
+import { Platform, ModalController } from '@ionic/angular';
+
+
+
 
 
 
@@ -17,7 +20,8 @@ export class RoomDetailsPage implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    public modalController: ModalController
+    public modalController: ModalController,
+    private platform: Platform
   ) {
     this.route.queryParams.subscribe(_ => {
       if (this.router.getCurrentNavigation().extras.state) {
@@ -27,5 +31,14 @@ export class RoomDetailsPage implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  showOnMap() {
+    const location = `${this.roomData.lat},${this.roomData.long}`;
+    if (this.platform.is('android')) {
+      window.open('geo:0,0?q=' + location, '_system');
+    } else {
+      window.open('maps://?q=' + location, '_system');
+    }
   }
 }

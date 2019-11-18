@@ -76,6 +76,7 @@ export class AddRoomPage implements OnInit {
   }
 
   async publishRoom() {
+    this.newRoom.id = uuid();
     this.newRoom.imageUrl = await this.uploadPicture();
     const user = await this.firebaseAuth.authState.pipe(first()).toPromise();
     this.newRoom.landlord = user.email;

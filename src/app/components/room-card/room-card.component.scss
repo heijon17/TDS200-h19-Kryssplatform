@@ -1,3 +1,14 @@
 .right {
     text-align: right;
 }
+
+.image-container {
+    overflow: hidden;
+    height: 30vh;
+}
+
+.card-image {
+    display: block;
+    width: 100%;
+    height: auto;
+}
