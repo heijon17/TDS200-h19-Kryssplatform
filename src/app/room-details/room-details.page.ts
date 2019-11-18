@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import IRoom from '../models/IRoom';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ModalController } from '@ionic/angular';
+
+
 
 @Component({
   selector: 'app-room-details',
@@ -13,7 +16,8 @@ export class RoomDetailsPage implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    public modalController: ModalController
   ) {
     this.route.queryParams.subscribe(_ => {
       if (this.router.getCurrentNavigation().extras.state) {
@@ -24,5 +28,4 @@ export class RoomDetailsPage implements OnInit {
 
   ngOnInit() {
   }
-
 }

@@ -11,4 +11,5 @@ export default interface IRoom {
     fromDate: any;
     toDate: any;
     imageUrl: string;
+    landlord: string;
 }

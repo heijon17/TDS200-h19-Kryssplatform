@@ -10,6 +10,31 @@
 <ion-content>
   <ion-card>
     <img [src]="cameraPreview" class="add-image" />
+    <ion-item>
+      <ion-input class="add-input" [(ngModel)]="newRoom.title" placeholder="Title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input class="add-input" [(ngModel)]="newRoom.address" placeholder="Address"></ion-input>
+    </ion-item>
+    <ion-grid class="ion-no-padding">
+      <ion-row>
+        <ion-col class="ion-no-padding">
+          <ion-item>
+            <ion-input class="add-input-half" [(ngModel)]="newRoom.capacity" placeholder="Capacity" type="tel"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-toggle color="primary" [(ngModel)]="newRoom.available"></ion-toggle>
+            <ion-label class="add-label">is available</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-item>
+      <ion-textarea class="add-input add-input-description" [(ngModel)]="newRoom.description" placeholder="Description"></ion-textarea>
+    </ion-item>
+
   </ion-card>
 </ion-content>
 
@@ -17,10 +42,17 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-        <ion-button class="add-button" (click)="takePicture()">Take picture</ion-button>
+        <ion-button class="add-button" (click)="takePicture()">
+          <ion-icon name="camera"></ion-icon>
+        </ion-button>
       </ion-col>
       <ion-col>
-        <ion-button class="add-button" (click)="bookRoom()">Publish room</ion-button>
+        <ion-button class="add-button" (click)="getLocation()">
+          <ion-icon name="pin"></ion-icon>
+        </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button class="add-button" (click)="publishRoom()">Publish!</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
