@@ -18,7 +18,7 @@
   <div>
     <ion-list>
       <ion-item *ngFor="let room of rooms$ | async" lines="none" (click)="showDetails(room)">
-        <app-room-card [roomData]="room" [compactView]="true"></app-room-card>
+        <app-room-card class="room-card" [roomData]="room" [compactView]="true"></app-room-card>
       </ion-item>
     </ion-list>
   </div>

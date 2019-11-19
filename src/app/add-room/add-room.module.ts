@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { AddRoomPageRoutingModule } from './add-room-routing.module';
 
 import { AddRoomPage } from './add-room.page';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { AddRoomPage } from './add-room.page';
     IonicModule,
     AddRoomPageRoutingModule
   ],
-  declarations: [AddRoomPage]
+  declarations: [AddRoomPage],
+  providers: [DatePipe]
 })
 export class AddRoomPageModule {}

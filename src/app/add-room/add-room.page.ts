@@ -6,8 +6,10 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { first } from 'rxjs/operators';
-import { ModalController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { DatepickerPage } from '../modals/datepicker/datepicker.page';
+import { Location, DatePipe } from '@angular/common';
+
 
 @Component({
   selector: 'app-add-room',
@@ -16,6 +18,7 @@ import { DatepickerPage } from '../modals/datepicker/datepicker.page';
 })
 export class AddRoomPage implements OnInit {
 
+  private dateButtonText = 'Select available dates..';
   private cameraPreview = 'https://ecclean.co.za/wp-content/uploads/2019/02/placeholder-icon.png';
   private imageToUpload = '';
   private newRoom: IRoom = {
@@ -28,8 +31,8 @@ export class AddRoomPage implements OnInit {
     long: 0,
     likes: 0,
     available: true,
-    fromDate: new Date(),
-    toDate: new Date(),
+    fromDate: null,
+    toDate: null,
     imageUrl: '',
     landlord: ''
   };
@@ -47,7 +50,10 @@ export class AddRoomPage implements OnInit {
     private fireStorage: AngularFireStorage,
     private firestore: AngularFirestore,
     private firebaseAuth: AngularFireAuth,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private toastcontroller: ToastController,
+    private location: Location,
+    private datePipe: DatePipe
   ) { }
 
   ngOnInit() {
@@ -64,6 +70,9 @@ export class AddRoomPage implements OnInit {
   }
 
   async uploadPicture() {
+    if (this.imageToUpload === '') {
+      return this.cameraPreview;
+    }
     const fileName = `room-${uuid()}.jpg`;
     const fireRef = this.fireStorage.ref(fileName);
     try {
@@ -79,13 +88,19 @@ export class AddRoomPage implements OnInit {
   }
 
   async publishRoom() {
+    if (!this.newRoom.title || !this.newRoom.description ||
+      !this.newRoom.fromDate || !this.newRoom.address || !this.newRoom.capacity) {
+      this.displayToastMessage('You need to fill all forms');
+      return;
+    }
+    this.location.back();
     this.newRoom.id = uuid();
     this.newRoom.imageUrl = await this.uploadPicture();
     const user = await this.firebaseAuth.authState.pipe(first()).toPromise();
     this.newRoom.landlord = user.email;
     const roomsRef = this.firestore.collection<IRoom>('rooms');
-
     await roomsRef.add(this.newRoom);
+    this.displayToastMessage('Room added!');
   }
 
   async getLocation() {
@@ -111,19 +126,29 @@ export class AddRoomPage implements OnInit {
   }
 
   async showModal() {
-      const modal = await this.modalController.create({
-        component: DatepickerPage,
-        componentProps: {
-          fromDate: this.newRoom.fromDate,
-          toDate: this.newRoom.toDate
-        }
-      });
-      await modal.present();
-      const { data } = await modal.onDidDismiss();
-      if (data.status === 'ok') {
-        this.newRoom.fromDate = data.fromDate;
-        this.newRoom.toDate = data.toDate;
-        console.log(this.newRoom);
+    const modal = await this.modalController.create({
+      component: DatepickerPage,
+      componentProps: {
+        fromDate: this.newRoom.fromDate,
+        toDate: this.newRoom.toDate
       }
+    });
+    await modal.present();
+    const { data } = await modal.onDidDismiss();
+    if (data.status === 'ok') {
+      this.newRoom.fromDate = data.fromDate;
+      this.newRoom.toDate = data.toDate;
+      console.log(this.newRoom);
+      this.dateButtonText =
+        `${this.datePipe.transform(this.newRoom.fromDate)} to ${this.datePipe.transform(this.newRoom.toDate)}`
     }
+  }
+
+  async displayToastMessage(displayMessage: string) {
+    const toast = await this.toastcontroller.create({
+      message: displayMessage,
+      duration: 3000
+    });
+    toast.present();
+  }
 }

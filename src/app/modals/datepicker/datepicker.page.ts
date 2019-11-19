@@ -16,7 +16,7 @@ export class DatepickerPage implements OnInit {
   constructor(
     private modalController: ModalController,
     private toastcontroller: ToastController
-    ) { }
+  ) { }
 
   ngOnInit() {
   }
@@ -29,7 +29,7 @@ export class DatepickerPage implements OnInit {
       return;
     }
     if (this.selectedFrom == null || this.selectedTo == null) {
-      this.displayToastMessage('Must select from and to dates');
+      this.displayToastMessage('You must select available dates');
       return;
     }
     this.modalController.dismiss({
@@ -39,12 +39,12 @@ export class DatepickerPage implements OnInit {
     });
   }
 
-async displayToastMessage(displayMessage: string) {
-  const toast = await this.toastcontroller.create({
-    message: displayMessage,
-    duration: 3000
-  });
-  toast.present();
-}
+  async displayToastMessage(displayMessage: string) {
+    const toast = await this.toastcontroller.create({
+      message: displayMessage,
+      duration: 3000
+    });
+    toast.present();
+  }
 
 }
