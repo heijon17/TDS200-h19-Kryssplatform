@@ -14,6 +14,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 
 import { DatepickerPageModule } from './modals/datepicker/datepicker.module';
 
@@ -42,7 +43,8 @@ const firebaseConfig = {
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
-    AngularFireAuthGuardModule
+    AngularFireAuthGuardModule,
+    AngularFireDatabaseModule
   ],
   providers: [
     Camera,

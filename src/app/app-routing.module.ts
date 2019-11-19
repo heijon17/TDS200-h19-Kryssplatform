@@ -15,15 +15,13 @@ const routes: Routes = [
   },
   {
     path: 'room-details',
-    loadChildren: () => import('./room-details/room-details.module').then( m => m.RoomDetailsPageModule)
+    loadChildren: () => import('./room-details/room-details.module').then( m => m.RoomDetailsPageModule),
+    ...canActivate(redirectUnauthorizedTo(['login']))
   },
   {
     path: 'add-room',
-    loadChildren: () => import('./add-room/add-room.module').then( m => m.AddRoomPageModule)
-  },
-  {
-    path: 'datepicker',
-    loadChildren: () => import('./modals/datepicker/datepicker.module').then( m => m.DatepickerPageModule)
+    loadChildren: () => import('./add-room/add-room.module').then( m => m.AddRoomPageModule),
+    ...canActivate(redirectUnauthorizedTo(['login']))
   },
 ];
 

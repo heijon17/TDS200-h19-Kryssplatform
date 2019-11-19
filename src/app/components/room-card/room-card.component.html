@@ -15,10 +15,10 @@
       </ion-row>
       <ion-row *ngIf="!compactView">
         <ion-col>
-          {{roomData.address}}
+          <ion-label class="ion-no-padding">{{roomData.address}}</ion-label>
         </ion-col>
         <ion-col class="right">
-          {{roomData.likes}} 👍 
+          <ion-label class="ion-no-padding" (click)="like()">{{roomData.likes}} 👍 </ion-label>
         </ion-col>
       </ion-row>
     </ion-grid>

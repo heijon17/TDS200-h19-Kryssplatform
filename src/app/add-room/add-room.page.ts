@@ -94,12 +94,14 @@ export class AddRoomPage implements OnInit {
       return;
     }
     this.location.back();
-    this.newRoom.id = uuid();
     this.newRoom.imageUrl = await this.uploadPicture();
     const user = await this.firebaseAuth.authState.pipe(first()).toPromise();
     this.newRoom.landlord = user.email;
     const roomsRef = this.firestore.collection<IRoom>('rooms');
-    await roomsRef.add(this.newRoom);
+    await roomsRef.add(this.newRoom)
+      .then(ref => {
+        ref.set({ id: ref.id }, { merge: true });
+      });
     this.displayToastMessage('Room added!');
   }
 
@@ -140,7 +142,7 @@ export class AddRoomPage implements OnInit {
       this.newRoom.toDate = data.toDate;
       console.log(this.newRoom);
       this.dateButtonText =
-        `${this.datePipe.transform(this.newRoom.fromDate)} to ${this.datePipe.transform(this.newRoom.toDate)}`
+        `${this.datePipe.transform(this.newRoom.fromDate)} to ${this.datePipe.transform(this.newRoom.toDate)}`;
     }
   }
 

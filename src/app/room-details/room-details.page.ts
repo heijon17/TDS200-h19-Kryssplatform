@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import IRoom from '../models/IRoom';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Platform, ModalController } from '@ionic/angular';
+import { Platform } from '@ionic/angular';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 
-
-
-
+export interface IRoomId extends IRoom { id: string; }
 
 @Component({
   selector: 'app-room-details',
@@ -15,13 +14,14 @@ import { Platform, ModalController } from '@ionic/angular';
 })
 export class RoomDetailsPage implements OnInit {
 
+
   private roomData: IRoom;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    public modalController: ModalController,
-    private platform: Platform
+    private platform: Platform,
+    private firestore: AngularFirestore
   ) {
     this.route.queryParams.subscribe(_ => {
       if (this.router.getCurrentNavigation().extras.state) {
@@ -29,11 +29,18 @@ export class RoomDetailsPage implements OnInit {
         console.log(this.roomData);
       }
     });
-    
   }
 
   ngOnInit() {
   }
+
+
+
+  async bookRoom() {
+
+  }
+
+
 
   showOnMap() {
     const location = `${this.roomData.lat},${this.roomData.long}`;
