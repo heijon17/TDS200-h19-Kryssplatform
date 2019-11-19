@@ -15,6 +15,8 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
 
+import { DatepickerPageModule } from './modals/datepicker/datepicker.module';
+
 import { Camera } from '@ionic-native/camera/ngx';
 
 const firebaseConfig = {
@@ -32,6 +34,7 @@ const firebaseConfig = {
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
+    DatepickerPageModule,
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,

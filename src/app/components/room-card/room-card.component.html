@@ -30,8 +30,8 @@
     </ion-card-content>
     <ion-card-content>
       <ion-label *ngIf="roomData.available">✔︎ Available <br> from 
-        {{roomData.fromDate.seconds*1000 | date:'dd MMM yyyy'}}
-        to {{roomData.toDate.seconds*1000 | date: 'dd MMM yyyy'}}
+        {{roomData.fromDate | date:'dd MMM yyyy'}}
+        to {{roomData.toDate | date: 'dd MMM yyyy'}}
       </ion-label>
     </ion-card-content>
   </div>

@@ -6,6 +6,8 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { first } from 'rxjs/operators';
+import { ModalController } from '@ionic/angular';
+import { DatepickerPage } from '../modals/datepicker/datepicker.page';
 
 @Component({
   selector: 'app-add-room',
@@ -44,8 +46,9 @@ export class AddRoomPage implements OnInit {
     private ngZone: NgZone,
     private fireStorage: AngularFireStorage,
     private firestore: AngularFirestore,
-    private firebaseAuth: AngularFireAuth
-  ) {}
+    private firebaseAuth: AngularFireAuth,
+    private modalController: ModalController
+  ) { }
 
   ngOnInit() {
   }
@@ -87,27 +90,40 @@ export class AddRoomPage implements OnInit {
 
   async getLocation() {
     try {
-     navigator.geolocation.getCurrentPosition(this.onLocationSuccess.bind(this));
+      navigator.geolocation.getCurrentPosition(this.onLocationSuccess.bind(this));
     } catch (error) {
       console.log(error);
     }
   }
 
   async onLocationSuccess(position: any) {
-    console.log(position.coords);
     this.newRoom.lat = position.coords.latitude;
     this.newRoom.long = position.coords.longitude;
     const response = await fetch(`
         https://nominatim.openstreetmap.org/reverse?
         format=json&lat=${position.coords.latitude}&lon=${position.coords.longitude}&zoom=18&addressdetails=1`
-        );
+    );
     const geocode = await response.json();
     this.ngZone.run(() => { // Creating a zone for the input field to update when newRoom object is updated
       // https://stackoverflow.com/questions/48860566/ion-input-value-ngmodel-is-not-getting-updated-with-relative-component-membe
       this.newRoom.address = geocode.address.road + ' ' + geocode.address.house_number;
     });
-    console.log(geocode);
-    console.log(this.newRoom);
   }
 
+  async showModal() {
+      const modal = await this.modalController.create({
+        component: DatepickerPage,
+        componentProps: {
+          fromDate: this.newRoom.fromDate,
+          toDate: this.newRoom.toDate
+        }
+      });
+      await modal.present();
+      const { data } = await modal.onDidDismiss();
+      if (data.status === 'ok') {
+        this.newRoom.fromDate = data.fromDate;
+        this.newRoom.toDate = data.toDate;
+        console.log(this.newRoom);
+      }
+    }
 }

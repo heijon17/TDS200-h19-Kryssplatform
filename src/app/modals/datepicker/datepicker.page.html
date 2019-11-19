@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>datepicker</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>From:</ion-label>
+    <ion-datetime [(ngModel)]="selectedFrom" displayFormat="DD MMM YYYY" placeholder="Select Date" max="2030"></ion-datetime>
+  </ion-item>
+  <ion-item>
+    <ion-label>To:</ion-label>
+    <ion-datetime [(ngModel)]="selectedTo" displayFormat="DD MMM YYYY" placeholder="Select Date" max="2030"></ion-datetime>
+  </ion-item>
+  <ion-button (click)="dismiss('ok')">OK</ion-button>
+  <ion-button (click)="dismiss('cancel')">Cancel</ion-button>
+</ion-content>

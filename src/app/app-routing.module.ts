@@ -21,6 +21,10 @@ const routes: Routes = [
     path: 'add-room',
     loadChildren: () => import('./add-room/add-room.module').then( m => m.AddRoomPageModule)
   },
+  {
+    path: 'datepicker',
+    loadChildren: () => import('./modals/datepicker/datepicker.module').then( m => m.DatepickerPageModule)
+  },
 ];
 
 @NgModule({
