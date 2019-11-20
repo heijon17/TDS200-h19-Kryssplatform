@@ -20,6 +20,9 @@ import { DatepickerPageModule } from './modals/datepicker/datepicker.module';
 
 import { Camera } from '@ionic-native/camera/ngx';
 
+import { CryptService } from './services/crypt.service';
+import { ToastService } from './services/toast.service';
+
 const firebaseConfig = {
   apiKey: 'AIzaSyALGa528XdnA7MdPlQqLV7_9rs_futKXYY',
   authDomain: 'tds200-h19-5026.firebaseapp.com',
@@ -47,6 +50,8 @@ const firebaseConfig = {
     AngularFireDatabaseModule
   ],
   providers: [
+    ToastService,
+    CryptService,
     Camera,
     StatusBar,
     SplashScreen,

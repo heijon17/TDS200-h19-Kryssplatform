@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Register new user</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button text="" color="medium" defaultHref="/"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item>
+    <ion-input placeholder="First name" type="text"></ion-input>
+    <ion-input placeholder="Last name" type="text"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input placeholder="Address" type="text"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input placeholder="Phone" type="tel"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input placeholder="Email" type="email"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input [(ngModel)]="newUser.password" placeholder="Password" type="password"></ion-input>
+  </ion-item>
+
+    <ion-button (click)="register()">Register</ion-button>
+ 
+</ion-content>

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ModalController, ToastController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-datepicker',
@@ -15,7 +16,7 @@ export class DatepickerPage implements OnInit {
 
   constructor(
     private modalController: ModalController,
-    private toastcontroller: ToastController
+    private toast: ToastService
   ) { }
 
   ngOnInit() {
@@ -29,7 +30,7 @@ export class DatepickerPage implements OnInit {
       return;
     }
     if (this.selectedFrom == null || this.selectedTo == null) {
-      this.displayToastMessage('You must select available dates');
+      this.toast.show('You must select available dates', 3000);
       return;
     }
     this.modalController.dismiss({
@@ -38,13 +39,4 @@ export class DatepickerPage implements OnInit {
       status: 'ok'
     });
   }
-
-  async displayToastMessage(displayMessage: string) {
-    const toast = await this.toastcontroller.create({
-      message: displayMessage,
-      duration: 3000
-    });
-    toast.present();
-  }
-
 }
