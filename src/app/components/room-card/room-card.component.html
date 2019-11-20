@@ -1,4 +1,4 @@
-<ion-card *ngIf="roomData.available">
+<ion-card *ngIf="isAdmin || roomData.available">
   <div class="image-container">
 
     <img class="card-image" [src]="roomData.imageUrl" />
@@ -32,6 +32,7 @@
         {{roomData.fromDate | date:'dd MMM yyyy'}}
         to {{roomData.toDate | date: 'dd MMM yyyy'}}
       </ion-label>
+      <ion-label *ngIf="!roomData.available">🛑 Not Available at the moment.</ion-label>
     </ion-card-content>
   </div>
 

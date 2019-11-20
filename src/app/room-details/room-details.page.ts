@@ -28,7 +28,6 @@ export class RoomDetailsPage implements OnInit {
     this.route.queryParams.subscribe(_ => {
       if (this.router.getCurrentNavigation().extras.state) {
         this.roomData = this.router.getCurrentNavigation().extras.state.roomData as IRoom;
-        console.log(this.roomData);
       }
     });
   }

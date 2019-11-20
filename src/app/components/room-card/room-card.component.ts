@@ -11,6 +11,7 @@ export class RoomCardComponent implements OnInit {
 
   @Input() roomData: IRoom;
   @Input() compactView: boolean;
+  @Input() isAdmin: boolean;
 
   private liked = false;
 
