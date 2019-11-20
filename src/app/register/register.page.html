@@ -10,17 +10,17 @@
 <ion-content>
 
   <ion-item>
-    <ion-input placeholder="First name" type="text"></ion-input>
-    <ion-input placeholder="Last name" type="text"></ion-input>
+    <ion-input [(ngModel)]="newUser.firstname" placeholder="First name" autocapitalize="on"></ion-input>
+    <ion-input [(ngModel)]="newUser.lastname" placeholder="Last name" autocapitalize="on"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-input placeholder="Address" type="text"></ion-input>
+    <ion-input [(ngModel)]="newUser.address" placeholder="Address" autocapitalize="on"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-input placeholder="Phone" type="tel"></ion-input>
+    <ion-input [(ngModel)]="newUser.phone" placeholder="Phone" type="tel"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-input placeholder="Email" type="email"></ion-input>
+    <ion-input [(ngModel)]="newUser.email" placeholder="Email" type="email"></ion-input>
   </ion-item>
   <ion-item>
     <ion-input [(ngModel)]="newUser.password" placeholder="Password" type="password"></ion-input>

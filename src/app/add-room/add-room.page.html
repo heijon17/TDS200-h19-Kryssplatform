@@ -11,10 +11,10 @@
   <ion-card>
     <img [src]="cameraPreview" class="add-image" />
     <ion-item>
-      <ion-input class="add-input" [(ngModel)]="newRoom.title" placeholder="Title"></ion-input>
+      <ion-input class="add-input" [(ngModel)]="newRoom.title" placeholder="Title" autocapitalize="on"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input class="add-input" [(ngModel)]="newRoom.address" placeholder="Address"></ion-input>
+      <ion-input class="add-input" [(ngModel)]="newRoom.address" placeholder="Address" autocapitalize="on"></ion-input>
     </ion-item>
     <ion-grid class="ion-no-padding">
       <ion-row>
@@ -32,7 +32,7 @@
       </ion-row>
     </ion-grid>
     <ion-item>
-      <ion-textarea class="add-input add-input-description" [(ngModel)]="newRoom.description" placeholder="Description"></ion-textarea>
+      <ion-textarea class="add-input add-input-description" [(ngModel)]="newRoom.description" placeholder="Description" autocapitalize="on"></ion-textarea>
     </ion-item>
 
     <ion-item>
