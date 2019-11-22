@@ -34,9 +34,9 @@ export class HomePage implements OnInit {
     private toast: ToastService
   ) {
     router.events.subscribe((event: Event) => { // Listening for routing events and calls getLoggedInUserData() when navigation starts.
-      if (event instanceof NavigationStart &&
+      if (event instanceof NavigationStart && // https://medium.com/@Carmichaelize/detecting-router-changes-with-angular-2-2f8c019788c3
         event.url === '/home' &&
-        !this.loggedInUser) { // https://medium.com/@Carmichaelize/detecting-router-changes-with-angular-2-2f8c019788c3
+        !this.loggedInUser) {
         this.getLoggedInUserData();
       }
     });
@@ -58,7 +58,8 @@ export class HomePage implements OnInit {
   showDetails(room: IRoom) {
     const navExtras: NavigationExtras = {
       state: {
-        roomData: room
+        roomData: room,
+        user: this.loggedInUser
       }
     };
     this.router.navigate(['room-details'], navExtras);
