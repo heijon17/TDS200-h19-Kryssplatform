@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import IRoom from 'src/app/models/IRoom';
 import { AngularFirestore } from '@angular/fire/firestore';
+import IUser from 'src/app/models/IUser';
 
 @Component({
   selector: 'app-room-card',
@@ -12,6 +13,7 @@ export class RoomCardComponent implements OnInit {
   @Input() roomData: IRoom;
   @Input() compactView: boolean;
   @Input() isAdmin: boolean;
+  @Input() user: IUser;
 
   private liked = false;
 
@@ -22,9 +24,10 @@ export class RoomCardComponent implements OnInit {
   ngOnInit() {  }
 
   async like() {
-    if (this.liked) { return; }
+
+    if (this.roomData.likes.includes(this.user.email)) { return; }
+    this.roomData.likes.push(this.user.email);
     const roomRef = this.firestore.collection<IRoom>('rooms').doc(this.roomData.id);
-    this.liked = true;
     return roomRef.update({
       likes: this.roomData.likes
     }).catch((error) => {

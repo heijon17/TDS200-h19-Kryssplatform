@@ -81,7 +81,7 @@ export class RoomDetailsPage implements OnInit {
           cssClass: 'secondary'
         }, {
           text: `I'm sure`,
-          cssClass: 'danger',
+          role: 'delete',
           handler: async () => {
             await this.deleteFromDb();
           }
