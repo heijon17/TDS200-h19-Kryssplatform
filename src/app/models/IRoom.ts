@@ -6,7 +6,7 @@ export default interface IRoom {
     address: string;
     lat: number;
     long: number;
-    likes: number;
+    likes: string[];
     available: boolean;
     fromDate: any;
     toDate: any;

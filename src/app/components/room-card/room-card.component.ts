@@ -26,7 +26,7 @@ export class RoomCardComponent implements OnInit {
     const roomRef = this.firestore.collection<IRoom>('rooms').doc(this.roomData.id);
     this.liked = true;
     return roomRef.update({
-      likes: this.roomData.likes++
+      likes: this.roomData.likes
     }).catch((error) => {
       console.log(error);
     });

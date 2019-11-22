@@ -4,8 +4,12 @@ import { Router, Event, NavigationExtras, NavigationStart } from '@angular/route
 import { AngularFirestore } from '@angular/fire/firestore';
 import IRoom from '../models/IRoom';
 import { Observable } from 'rxjs';
-import { first, filter } from 'rxjs/operators';
+import { first } from 'rxjs/operators';
 import IUser from '../models/IUser';
+import IUserInfo from '../models/IUserInfo';
+import { AuthService } from '../services/auth.service';
+import { userInfo } from 'os';
+import { ToastService } from '../services/toast.service';
 
 
 
@@ -14,50 +18,40 @@ import IUser from '../models/IUser';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
+
 export class HomePage implements OnInit {
 
   private rooms$: Observable<IRoom[]>;
   private isAdmin = false;
 
-  private loggenInEmail = '';
-  private loggedInUser: IUser;
+  private loggedInUser: IUser; // User information. Can be used for MyPage or something.
 
   constructor(
     private fireauth: AngularFireAuth,
     private router: Router,
-    private firestore: AngularFirestore
+    private firestore: AngularFirestore,
+    private auth: AuthService,
+    private toast: ToastService
   ) {
-    router.events.subscribe((event: Event) => {
-      if (event instanceof NavigationStart) {
+    router.events.subscribe((event: Event) => { // Listening for routing events and calls getLoggedInUserData() when navigation starts.
+      if (event instanceof NavigationStart &&
+        event.url === '/home' &&
+        !this.loggedInUser) { // https://medium.com/@Carmichaelize/detecting-router-changes-with-angular-2-2f8c019788c3
         this.getLoggedInUserData();
       }
     });
   }
 
-
-
   ngOnInit() {
     this.getLoggedInUserData();
-    this.rooms$ = this.firestore.collection('rooms').valueChanges() as Observable<IRoom[]>;
+    this.rooms$ = this.firestore.collection('rooms').valueChanges() as Observable<IRoom[]>; // From lecture.
   }
 
-
   async getLoggedInUserData() {
-    const userEmail = await this.fireauth.authState.pipe(first()).toPromise();
-    if (userEmail) {
-      this.loggenInEmail = userEmail.email;
-    }
-
-    this.firestore.collection<IUser>('users').snapshotChanges().subscribe(doc => {
-      doc.forEach(user => {
-        const data = user.payload.doc.data() as IUser;
-        data.id = user.payload.doc.id;
-        if (data.email === this.loggenInEmail) {
-          this.loggedInUser = data;
-          this.isAdmin = data.isAdmin;
-          return;
-        }
-      });
+    await this.auth.getLoggedInUser().then((info) => {
+      this.isAdmin = info.isAdmin;
+      this.loggedInUser = info.userInfo;
+      this.toast.show(`Welcome! Logged in as ${info.userInfo.firstname} ${info.userInfo.lastname}`, 3000);
     });
   }
 
@@ -73,6 +67,7 @@ export class HomePage implements OnInit {
 
   async logout() {
     this.isAdmin = false;
+    this.loggedInUser = null;
     await this.fireauth.auth.signOut();
     this.router.navigateByUrl('login');
   }

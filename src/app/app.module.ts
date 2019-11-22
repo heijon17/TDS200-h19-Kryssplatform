@@ -22,6 +22,7 @@ import { Camera } from '@ionic-native/camera/ngx';
 
 import { CryptService } from './services/crypt.service';
 import { ToastService } from './services/toast.service';
+import { AuthService } from './services/auth.service';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyALGa528XdnA7MdPlQqLV7_9rs_futKXYY',
@@ -50,6 +51,7 @@ const firebaseConfig = {
     AngularFireDatabaseModule
   ],
   providers: [
+    AuthService,
     ToastService,
     CryptService,
     Camera,

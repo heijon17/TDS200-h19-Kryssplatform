@@ -35,8 +35,6 @@ export class RoomDetailsPage implements OnInit {
   ngOnInit() {
   }
 
-
-
   async showDateModal() {
     const modal = await this.modalcontroller.create({
       component: DatepickerPage,
@@ -62,8 +60,6 @@ export class RoomDetailsPage implements OnInit {
       available: false
     });
   }
-
-
 
   showOnMap() {
     const location = `${this.roomData.lat},${this.roomData.long}`;

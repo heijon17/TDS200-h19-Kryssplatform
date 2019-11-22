@@ -30,7 +30,7 @@ export class AddRoomPage implements OnInit {
     address: '',
     lat: 0,
     long: 0,
-    likes: 0,
+    likes: [],
     available: true,
     fromDate: null,
     toDate: null,
