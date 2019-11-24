@@ -13,6 +13,8 @@
     <ion-label>To:</ion-label>
     <ion-datetime [(ngModel)]="selectedTo" displayFormat="DD MMM YYYY" placeholder="Select Date" max="2030"></ion-datetime>
   </ion-item>
-  <ion-button (click)="dismiss('cancel')">Cancel</ion-button>
-  <ion-button (click)="dismiss('ok')">OK</ion-button>
+  <ion-segment class="ion-padding">
+    <ion-button (click)="dismiss('cancel')">Cancel</ion-button>
+    <ion-button (click)="dismiss('ok')">OK</ion-button>
+  </ion-segment>
 </ion-content>

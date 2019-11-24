@@ -23,7 +23,8 @@ export class AppComponent {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      this.router.navigate(['login']); // Initialize the app with login-screen
+      this.router.initialNavigation();
+      this.router.navigateByUrl('login'); // Initialize the app with login-screen
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });

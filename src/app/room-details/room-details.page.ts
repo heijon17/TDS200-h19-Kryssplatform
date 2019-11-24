@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { RoomCardComponent } from './../components/room-card/room-card.component';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import IRoom from '../models/IRoom';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Platform, ModalController, AlertController } from '@ionic/angular';
@@ -18,6 +19,7 @@ export interface IRoomId extends IRoom { id: string; }
 })
 export class RoomDetailsPage implements OnInit {
 
+  @ViewChild(RoomCardComponent, null) roomCard: RoomCardComponent;
 
   public user: IUser;
   public roomData: IRoom;
@@ -92,6 +94,10 @@ export class RoomDetailsPage implements OnInit {
     });
     await alert.present();
 
+  }
+
+  async rate() {
+    this.roomCard.showRatingModal();
   }
 
   private async deleteFromDb() {

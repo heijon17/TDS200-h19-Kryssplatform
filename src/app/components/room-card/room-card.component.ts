@@ -4,6 +4,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import IUser from 'src/app/models/IUser';
 import { ModalController } from '@ionic/angular';
 import { RatingPage } from '../../modals/rating/rating.page';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-room-card',
@@ -21,15 +22,15 @@ export class RoomCardComponent implements OnInit {
 
   constructor(
     private firestore: AngularFirestore,
-    private modalcontroller: ModalController
+    private modalcontroller: ModalController,
+    private toast: ToastService
   ) { }
 
   ngOnInit() { }
 
   async rate(rating: number) {
-    // TODO: Convert from likes to rating.
     this.roomData.rating.push(rating);
-    this.roomData.likes.push(this.user.email); // {this.user.email, rating}
+    this.roomData.likes.push(this.user.email);
     const roomRef = this.firestore.collection<IRoom>('rooms').doc(this.roomData.id);
     return roomRef.update({
       likes: this.roomData.likes,
@@ -40,7 +41,10 @@ export class RoomCardComponent implements OnInit {
   }
 
   async showRatingModal() {
-    if (this.roomData.likes.includes(this.user.email)) { return; }
+    if (this.roomData.likes.includes(this.user.email)) {
+      this.toast.show('You have already rated this room.', 2000);
+      return;
+    }
     const modal = await this.modalcontroller.create({
       component: RatingPage
     });

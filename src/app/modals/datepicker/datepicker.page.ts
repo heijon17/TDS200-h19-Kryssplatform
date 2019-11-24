@@ -11,8 +11,8 @@ export class DatepickerPage implements OnInit {
 
   @Input() fromDate: Date;
   @Input() toDate: Date;
-  private selectedFrom: any;
-  private selectedTo: any;
+  public selectedFrom: any;
+  public selectedTo: any;
 
   constructor(
     private modalController: ModalController,

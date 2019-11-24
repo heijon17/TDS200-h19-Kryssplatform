@@ -6,7 +6,7 @@ import { RatingPage } from './rating.page';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'rating',
     component: RatingPage
   }
 ];
@@ -17,4 +17,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
 })
-export class RatingPageRoutingModule {}
+export class RatingPageRoutingModule { }
