@@ -1,3 +1,4 @@
+import { RatingPageModule } from './modals/rating/rating.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
@@ -39,6 +40,7 @@ const firebaseConfig = {
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
+    RatingPageModule,
     DatepickerPageModule,
     BrowserModule,
     IonicModule.forRoot(),

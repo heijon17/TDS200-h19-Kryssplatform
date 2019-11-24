@@ -56,7 +56,10 @@ export class RoomDetailsPage implements OnInit {
     const { data } = await modal.onDidDismiss();
     if (data.status === 'ok') {
       // handle dates
-      const dates = {};
+      const dates = {
+        fromDate: data.fromDate,
+        toDate: data.toDate
+      };
       this.bookRoom(dates);
     }
   }
@@ -70,7 +73,6 @@ export class RoomDetailsPage implements OnInit {
   }
 
   async deleteRoom() {
-
     const alert = await this.alertcontroller.create({
       header: 'Remove room?',
       message: 'Sure you want to remove this room?',

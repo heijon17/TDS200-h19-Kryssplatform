@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Rate this room</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-segment>
+    <ion-item>
+      <ion-label>How would you rate this room?</ion-label>
+    </ion-item>
+  </ion-segment>
+  <ion-segment>
+    <ionic4-star-rating maxRating="10" (ratingChanged)="setRate($event)"></ionic4-star-rating>
+  </ion-segment>
+  <ion-segment>
+    <ion-button (click)="dismiss('cancel')" slot="start">Cancel</ion-button>
+    <ion-button (click)="dismiss('ok')" slot="end">OK</ion-button>
+  </ion-segment>
+</ion-content>
