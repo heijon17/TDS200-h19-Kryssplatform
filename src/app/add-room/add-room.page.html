@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content fullscreen>
   <ion-card>
     <img [src]="cameraPreview" class="add-image" />
     <ion-item>
@@ -20,7 +20,8 @@
       <ion-row>
         <ion-col class="ion-no-padding">
           <ion-item>
-            <ion-input class="add-input-half" [(ngModel)]="newRoom.capacity" placeholder="Capacity" type="tel"></ion-input>
+            <ion-input class="add-input-half" [(ngModel)]="newRoom.capacity" placeholder="Capacity" type="tel">
+            </ion-input>
           </ion-item>
         </ion-col>
         <ion-col>
@@ -32,7 +33,8 @@
       </ion-row>
     </ion-grid>
     <ion-item>
-      <ion-textarea class="add-input add-input-description" [(ngModel)]="newRoom.description" placeholder="Description" autocapitalize="on"></ion-textarea>
+      <ion-textarea class="add-input add-input-description" [(ngModel)]="newRoom.description" placeholder="Description"
+        autocapitalize="on"></ion-textarea>
     </ion-item>
 
     <ion-item>
@@ -42,7 +44,7 @@
   </ion-card>
 </ion-content>
 
-<ion-footer class="add-footer">
+<ion-footer transparent class="add-footer">
   <ion-grid>
     <ion-row>
       <ion-col>

@@ -10,11 +10,12 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-no-padding">
-  <app-room-card [user]="user" [isAdmin]="true" [roomData]="roomData" [compactView]="false"></app-room-card>
+<ion-content fullscreen class="ion-no-padding">
+  <app-room-card class="room-card" [user]="user" [isAdmin]="true" [roomData]="roomData" [compactView]="false">
+  </app-room-card>
 </ion-content>
 
-<ion-footer class="details-footer">
+<ion-footer transparent class="details-footer">
   <ion-grid>
     <ion-row>
       <ion-col>
@@ -25,5 +26,5 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  
+
 </ion-footer>

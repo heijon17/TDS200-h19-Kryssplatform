@@ -14,7 +14,7 @@ import { Location } from '@angular/common';
 })
 export class RegisterPage implements OnInit {
 
-  private newUser: IUser = {
+  public newUser: IUser = {
     id: '',
     firstname: '',
     lastname: '',

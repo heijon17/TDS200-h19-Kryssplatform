@@ -21,10 +21,10 @@ import { ToastService } from '../services/toast.service';
 
 export class HomePage implements OnInit {
 
-  private rooms$: Observable<IRoom[]>;
-  private isAdmin = false;
+  public rooms$: Observable<IRoom[]>;
+  public isAdmin = false;
 
-  private loggedInUser: IUser; // User information. Can be used for MyPage or something.
+  public loggedInUser: IUser; // User information. Can be used for MyPage or something.
 
   constructor(
     private fireauth: AngularFireAuth,

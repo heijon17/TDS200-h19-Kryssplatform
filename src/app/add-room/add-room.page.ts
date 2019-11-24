@@ -19,10 +19,10 @@ import { ToastService } from '../services/toast.service';
 })
 export class AddRoomPage implements OnInit {
 
-  private dateButtonText = 'Select available dates..';
-  private cameraPreview = 'https://ecclean.co.za/wp-content/uploads/2019/02/placeholder-icon.png';
+  public dateButtonText = 'Select available dates..';
+  public cameraPreview = 'https://ecclean.co.za/wp-content/uploads/2019/02/placeholder-icon.png';
   private imageToUpload = '';
-  private newRoom: IRoom = {
+  public newRoom: IRoom = {
     id: '',
     title: '',
     description: '',

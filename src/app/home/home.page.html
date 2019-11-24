@@ -15,11 +15,11 @@
 </ion-header>
 
 <ion-content>
-  <div>
-    <ion-list>
-      <ion-item *ngFor="let room of rooms$ | async" lines="none" (click)="showDetails(room)">
+  
+    <ion-list class="transparent">
+      <ion-item class="transparent" *ngFor="let room of rooms$ | async" lines="none" (click)="showDetails(room)">
         <app-room-card class="room-card" [user]="loggedInUser" [isAdmin]="isAdmin" [roomData]="room" [compactView]="true"></app-room-card>
       </ion-item>
     </ion-list>
-  </div>
+  
 </ion-content>

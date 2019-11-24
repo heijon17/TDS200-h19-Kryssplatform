@@ -19,8 +19,8 @@ export interface IRoomId extends IRoom { id: string; }
 export class RoomDetailsPage implements OnInit {
 
 
-  private user: IUser;
-  private roomData: IRoom;
+  public user: IUser;
+  public roomData: IRoom;
 
   constructor(
     private route: ActivatedRoute,

@@ -5,6 +5,9 @@
 .details-footer {
     position: relative;
     height: 90px;
-    background-color: white;
     text-align: center;
+}
+
+ion-content {
+    --padding-top: 0px;
 }

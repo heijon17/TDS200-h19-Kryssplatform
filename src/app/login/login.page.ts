@@ -10,7 +10,7 @@ import { ToastService } from '../services/toast.service';
 })
 export class LoginPage implements OnInit {
 
-  private user = {
+  public user = {
     email: '',
     password: ''
   };

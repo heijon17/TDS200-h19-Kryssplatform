@@ -28,3 +28,17 @@
 body {
     max-width: 500px;
 }
+
+.room-card {
+    width: 100%;
+    --ion-item-background: white;
+}
+
+ion-content {
+    --ion-background-color: lightgray;
+}
+
+.transparent {
+    --ion-background-color: rgba(0, 0, 0, 0);
+    --ion-item-background: none;
+}
