@@ -153,7 +153,6 @@ export class AddRoomPage implements OnInit {
     if (data.status === 'ok') {
       this.newRoom.fromDate = data.fromDate;
       this.newRoom.toDate = data.toDate;
-      console.log(this.newRoom);
       this.dateButtonText =
         `${this.datePipe.transform(this.newRoom.fromDate)} to ${this.datePipe.transform(this.newRoom.toDate)}`;
     }
