@@ -18,8 +18,6 @@ export class RoomCardComponent implements OnInit {
   @Input() isAdmin: boolean;
   @Input() user: IUser;
 
-  private liked = false;
-
   constructor(
     private firestore: AngularFirestore,
     private modalcontroller: ModalController,

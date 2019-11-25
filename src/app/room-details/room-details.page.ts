@@ -62,6 +62,7 @@ export class RoomDetailsPage implements OnInit {
         fromDate: data.fromDate,
         toDate: data.toDate
       };
+      this.location.back();
       this.bookRoom(dates);
     }
   }
@@ -71,7 +72,7 @@ export class RoomDetailsPage implements OnInit {
     const roomRef = this.firestore.collection<IRoom>('rooms').doc(this.roomData.id);
     return roomRef.update({
       available: false
-    });
+    }).then(() => this.toast.show('Room booked!', 3000));
   }
 
   async deleteRoom() {

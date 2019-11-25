@@ -26,7 +26,7 @@ export class AuthService {
     }
     return null;
   }
-
+  // return user info from firebase database based on logged in user.
   async getLoggedInUser(): Promise<IUserInfo> {
     const loggedInUserMail = await this.getLoggedInUserMail();
     const promise = new Promise(resolve => this.firestore.collection<IUser>('users').snapshotChanges().subscribe(doc => {

@@ -61,6 +61,7 @@ export class AddRoomPage implements OnInit {
   ngOnInit() {
   }
 
+  // From lecture in class
   async takePicture() {
     try {
       const imageData = await this.camera.getPicture(this.cameraOptions);
@@ -71,6 +72,7 @@ export class AddRoomPage implements OnInit {
     }
   }
 
+  // From lecture in class
   async uploadPicture() {
     if (this.imageToUpload === '') {
       return this.cameraPreview;
@@ -90,10 +92,18 @@ export class AddRoomPage implements OnInit {
   }
 
   async publishRoom() {
-    if (!this.newRoom.title || !this.newRoom.description ||
-      !this.newRoom.fromDate || !this.newRoom.address || !this.newRoom.capacity) {
-      this.toast.show('You need to fill all forms', 3000);
-      return;
+    if (this.newRoom.available) {
+      if (!this.newRoom.title || !this.newRoom.description ||
+        !this.newRoom.fromDate || !this.newRoom.address || !this.newRoom.capacity) {
+        this.toast.show('You need to fill all forms', 3000);
+        return;
+      }
+    } else {
+      if (!this.newRoom.title || !this.newRoom.description ||
+        !this.newRoom.address || !this.newRoom.capacity) {
+        this.toast.show('You need to fill all forms', 3000);
+        return;
+      }
     }
     this.location.back();
     this.newRoom.imageUrl = await this.uploadPicture();
@@ -115,6 +125,7 @@ export class AddRoomPage implements OnInit {
     }
   }
 
+  // From lecture in class
   async onLocationSuccess(position: any) {
     this.newRoom.lat = position.coords.latitude;
     this.newRoom.long = position.coords.longitude;

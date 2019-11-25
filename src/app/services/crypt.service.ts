@@ -6,6 +6,7 @@ import * as CryptoJS from 'crypto-js';
 })
 
 // from https://www.code-sample.com/2018/12/angular-7-cryptojs-encrypt-decrypt.html
+// Service for encrypting/decrypting strings, passwords, etc.
 
 export class CryptService {
 
